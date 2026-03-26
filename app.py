@@ -52,14 +52,16 @@ with st.sidebar:
           llm = ChatGroq(
                model=model,
                temperature=0.0,
+               api_key=groq_api_key
           )
      elif provider=="Gemini":
            model=st.selectbox(
-               "choose model",["gemini-2.5-pro", "gemini-2.5-flash"]
+               "choose model",[ "gemini-2.5-flash"]
           )
            llm = ChatGoogleGenerativeAI(
                model=model,
                temperature=0.0,
+               google_api_key=gemini_api_key
           )
 
 if st.sidebar.button("🧹 Clear Chat"):
@@ -80,10 +82,11 @@ if user_prompt:
          "content": user_prompt
          })
 
-    response=llm.invoke(
+    with st.spinner("Thinking..."):
+         response=llm.invoke(
          input=[{"role":"system", "content":"you are a helpful assistant"},
                 *st.session_state.chat_history]
-    )
+        )
 
     assistant_response= response.content
     st.session_state.chat_history.append({"role": "assistant","content": assistant_response})
