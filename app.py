@@ -16,7 +16,7 @@ st.set_page_config(
     layout="centered",
 )
 
-st.title("🤖 Section 5- Practice Exercise 🤖")
+st.title("🤖 My First Chatbot")
 
 #initiate chat history
 if "chat_history" not in st.session_state:
@@ -67,10 +67,6 @@ with st.sidebar:
 if st.sidebar.button("🧹 Clear Chat"):
     st.session_state.chat_history = []
     st.rerun()
-
-st.sidebar.markdown("-----------")
-st.sidebar.markdown("Built with ❤️ using Streamlit")
-st.sidebar.markdown("Zainab Kawsan")
 
 
 user_prompt=st.chat_input("Ask Chatbot ....")
